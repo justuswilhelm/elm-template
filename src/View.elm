@@ -19,16 +19,18 @@ viewNav : Page -> Html Msg.PageState.Msg
 viewNav page =
     nav
         [ class "navbar" ]
-        [ a
-            [ reverseHref HomeP
-            , class "navbar-item"
+        [ div [ class "container" ]
+            [ a
+                [ reverseHref HomeP
+                , class "navbar-item"
+                ]
+                [ text "Home" ]
+            , a
+                [ reverseHref AboutP
+                , class "navbar-item"
+                ]
+                [ text "About" ]
             ]
-            [ text "Home" ]
-        , a
-            [ reverseHref AboutP
-            , class "navbar-item"
-            ]
-            [ text "About" ]
         ]
 
 
