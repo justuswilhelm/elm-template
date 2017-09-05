@@ -4,6 +4,7 @@ SRC_PATH := src
 STATIC_PATH := static
 TEST_PATH := tests
 
+ELM_FORMAT := elm-format-0.18
 ELM_MAKE := elm-make
 ELM_MAKE_FLAG := --warn --yes
 
@@ -29,7 +30,10 @@ $(BUILD)/%.html: %.html $(BUILD)
 	cp $< $@
 
 format: $(SRC_ELM) $(TEST_ELM)
-	elm-format-0.18 $^ --yes
+	$(ELM_FORMAT) $^ --yes
+
+install:
+	elm package install --yes
 
 clean:
 	rm -rf elm-stuff/build-artifacts/
@@ -43,6 +47,10 @@ live: $(SRC)
 		--pushstate \
 		--debug \
 		--dir=$(STATIC_PATH)
+
+check: $(SRC_ELM) $(TEST_ELM)
+	$(ELM_FORMAT) $^ --validate || echo "Elm format not available"
+	elm test
 
 cloc:
 	cloc --vcs=git

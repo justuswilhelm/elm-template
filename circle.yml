@@ -1,0 +1,20 @@
+version: 2.0
+jobs:
+  build:
+    working_directory: ~/elm-template
+    docker:
+      - image: gorghoa/elm-dev
+    steps:
+      - checkout
+      - run:
+          name: "Install make"
+          command: apt update && apt install -y make
+      - run:
+          name: "Install elm packages"
+          command: make install
+      - run:
+          name: "Build project"
+          command: make
+      - run:
+          name: "Run tests"
+          command: make check
