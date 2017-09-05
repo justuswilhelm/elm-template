@@ -40,10 +40,8 @@ routeMsg loc =
 routeInit : Navigation.Location -> Model.Model -> ( Model.Model, Cmd Msg.Msg )
 routeInit loc model =
     loc
-        |> parseHash route
-        |> Maybe.withDefault HomeP
-        |> Msg.PageState.Navigate
-        |> (flip Update.PageState.update) model
+        |> routeMsg
+        |> flip Update.PageState.update model
 
 
 reverse : Page -> String

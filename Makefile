@@ -39,8 +39,8 @@ clean:
 live: $(SRC)
 	elm-live \
 		--output=$(STATIC_PATH)/main.js $< \
+		--host=0.0.0.0 \
 		--pushstate \
-		--open \
 		--debug \
 		--dir=$(STATIC_PATH)
 
